@@ -1,0 +1,20 @@
+measureDescr	ChangeQueueSize_Cloud server	ChangeQueueSize_Edge node	ChangeNumberServers_Cloud server	ChangeNumberServers_Edge node	ChangeNumberServersM1_Cloud server	ChangeNumberServersM1_Edge node	ChangeNumberServersP_Cloud server	ChangeNumberServersP_Edge node	ChangeNumberServersP1_Cloud server	ChangeNumberServersP1_Edge node	ChangeQueueingStrategy_Cloud server	ChangeQueueingStrategy_Edge node	ChangeQueueSizeM1_Cloud server	ChangeQueueSizeM1_Edge node	ChangeQueueSizeP_Cloud server	ChangeQueueSizeP_Edge node	ChangeQueueSizeP1_Cloud server	ChangeQueueSizeP1_Edge node
+-1_-1_-1	0 ; 0	0 ; 0	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+DR_Cloud_Cloud server	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0
+DR_Cloud_Edge node	0 ; 0	0 ; Inf	0 ; 0	0 ; Inf	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0
+DR_Edge_Cloud server	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0
+DR_Edge_Edge node	0 ; 0	Inf ; Inf	0 ; 0	0 ; Inf	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0
+DR_NA_Cloud server	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0
+DR_NA_Edge node	0 ; 0	Inf ; Inf	0 ; 0	0 ; Inf	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0
+SDR_Cloud_NA	0 ; 0	0 ; Inf	0 ; 0	0 ; Inf	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0
+SDR_Edge_NA	0 ; 0	Inf ; Inf	0 ; 0	0 ; Inf	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0
+SDR_NA_NA	0 ; 0	Inf ; Inf	0 ; 0	0 ; Inf	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0
+SRT_Cloud_NA	0 ; 0	-0.03 ; 0	0 ; 0.05	-0.41 ; 0.28	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0
+SRT_Edge_NA	0 ; 0	-0.41 ; 0	-0.02 ; 0	-0.35 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0
+SRT_NA_NA	0 ; 0	-0.29 ; 0	-0.03 ; 0	-0.72 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0
+UTIL_Cloud_Cloud server	0 ; 0	-0.11 ; 0	100 ; 100.18	0 ; 0.28	11.11 ; 11.11	0 ; 0	-50 ; -50	0 ; 0	-9.09 ; -9.09	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0
+UTIL_Cloud_Edge node	0 ; 0	0 ; 0.29	0 ; 0.01	99.99 ; 101.74	0 ; 0	11.11 ; 11.11	0 ; 0	-50 ; -50	0 ; 0	-9.09 ; -9.09	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0
+UTIL_Edge_Cloud server	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0
+UTIL_Edge_Edge node	0 ; 0	-1.52 ; 0	0 ; 1.36	98.14 ; 100	0 ; 0	11.11 ; 11.11	0 ; 0	-50 ; -50	0 ; 0	-9.09 ; -9.09	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0
+UTIL_NA_Cloud server	0 ; 0	-0.11 ; 0	100 ; 100.18	0 ; 0.28	11.11 ; 11.11	0 ; 0	-50 ; -50	0 ; 0	-9.09 ; -9.09	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0
+UTIL_NA_Edge node	0 ; 0	-1.09 ; 0	-0.12 ; 0	98.54 ; 100	0 ; 0	11.11 ; 11.11	0 ; 0	-50 ; -50	0 ; 0	-9.09 ; -9.09	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0	0 ; 0

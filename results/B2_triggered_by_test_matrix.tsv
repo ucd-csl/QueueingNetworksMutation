@@ -1,0 +1,4 @@
+test	ChangeNumberServers_Cloud server	ChangeNumberServers_Edge node	ChangeNumberServersM1_Cloud server	ChangeNumberServersM1_Edge node	ChangeNumberServersP_Cloud server	ChangeNumberServersP_Edge node	ChangeNumberServersP1_Cloud server	ChangeNumberServersP1_Edge node	ChangeQueueingStrategy_Cloud server	ChangeQueueingStrategy_Edge node	ChangeQueueSize_Cloud server	ChangeQueueSize_Edge node	ChangeQueueSizeM1_Cloud server	ChangeQueueSizeM1_Edge node	ChangeQueueSizeP_Cloud server	ChangeQueueSizeP_Edge node	ChangeQueueSizeP1_Cloud server	ChangeQueueSizeP1_Edge node
+edge-0.5	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	FALSE
+edge-0.5-double	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	FALSE
+edge-0.5-half	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	FALSE	TRUE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	FALSE

@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<archive xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="4_facial_recognition_system_lambda1_singlerun.jsimg" timestamp="Fri Mar 19 19:24:09 JST 2021" xsi:noNamespaceSchemaLocation="Archive.xsd">
+    <sim disableStatisticStop="false" logDecimalSeparator="." logDelimiter="," logPath="/Users/parcaini/JMT" logReplaceMode="0" maxEvents="-1" maxSamples="1000000" name="4_facial_recognition_system_lambda1_singlerun.jsimg" polling="1.0" seed="23000" xsi:noNamespaceSchemaLocation="SIMmodeldefinition.xsd">
+        <userClass name="Edge" priority="0" referenceSource="Source 1" type="open"/>
+        <userClass name="Cloud" priority="0" referenceSource="ClassSwitch" type="open"/>
+        <node name="Source 1">
+            <section className="RandomSource">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
+                    <refClass>Edge</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>1.0</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Cloud</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <value>null</value>
+                    </subParameter>
+                </parameter>
+            </section>
+            <section className="ServiceTunnel"/>
+            <section className="Router">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+                    <refClass>Edge</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Edge node</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>1.0</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Cloud</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Edge node</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>1.0</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+            </section>
+        </node>
+        <node name="Edge node">
+            <section className="Queue">
+                <parameter classPath="java.lang.Integer" name="size">
+                    <value>10</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="dropStrategies">
+                    <refClass>Edge</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>Cloud</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+                    <refClass>Edge</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                    <refClass>Cloud</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                </parameter>
+            </section>
+            <section className="Server">
+                <parameter classPath="java.lang.Integer" name="maxJobs">
+                    <value>10</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="numberOfVisits">
+                    <refClass>Edge</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                    <refClass>Cloud</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
+                    <refClass>Edge</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>2.0</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Cloud</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>10.0</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+            </section>
+            <section className="Router">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+                    <refClass>Edge</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Sink 1</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.6</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>ClassSwitch 1</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.4</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Sink 2</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.0</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Cloud</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Sink 1</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.0</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>ClassSwitch 1</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.0</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Sink 2</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>1.0</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+            </section>
+        </node>
+        <node name="Sink 1">
+            <section className="JobSink"/>
+        </node>
+        <node name="ClassSwitch 1">
+            <section className="Queue">
+                <parameter classPath="java.lang.Integer" name="size">
+                    <value>-1</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="dropStrategies">
+                    <refClass>Edge</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>Cloud</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+                    <refClass>Edge</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                    <refClass>Cloud</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                </parameter>
+            </section>
+            <section className="ClassSwitch">
+                <parameter array="true" classPath="java.lang.Object" name="matrix">
+                    <refClass>Edge</refClass>
+                    <subParameter array="true" classPath="java.lang.Float" name="row">
+                        <refClass>Edge</refClass>
+                        <subParameter classPath="java.lang.Float" name="cell">
+                            <value>0.0</value>
+                        </subParameter>
+                        <refClass>Cloud</refClass>
+                        <subParameter classPath="java.lang.Float" name="cell">
+                            <value>1.0</value>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Cloud</refClass>
+                    <subParameter array="true" classPath="java.lang.Float" name="row">
+                        <refClass>Edge</refClass>
+                        <subParameter classPath="java.lang.Float" name="cell">
+                            <value>0.0</value>
+                        </subParameter>
+                        <refClass>Cloud</refClass>
+                        <subParameter classPath="java.lang.Float" name="cell">
+                            <value>1.0</value>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+            </section>
+            <section className="Router">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+                    <refClass>Edge</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Cloud server</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>1.0</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Cloud</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Cloud server</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>1.0</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+            </section>
+        </node>
+        <node name="Cloud server">
+            <section className="Queue">
+                <parameter classPath="java.lang.Integer" name="size">
+                    <value>10</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="dropStrategies">
+                    <refClass>Edge</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>Cloud</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+                    <refClass>Edge</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                    <refClass>Cloud</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                </parameter>
+            </section>
+            <section className="Server">
+                <parameter classPath="java.lang.Integer" name="maxJobs">
+                    <value>10</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="numberOfVisits">
+                    <refClass>Edge</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                    <refClass>Cloud</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
+                    <refClass>Edge</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>1.0</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Cloud</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>1.25</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+            </section>
+            <section className="Router">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+                    <refClass>Edge</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Edge node</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>1.0</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Cloud</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Edge node</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>1.0</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+            </section>
+        </node>
+        <node name="Sink 2">
+            <section className="JobSink"/>
+        </node>
+        <measure alpha="0.01" name="Edge_System Response Time" nodeType="" precision="0.03" referenceNode="" referenceUserClass="Edge" type="System Response Time" verbose="false"/>
+        <measure alpha="0.01" name="Cloud_System Response Time" nodeType="" precision="0.03" referenceNode="" referenceUserClass="Cloud" type="System Response Time" verbose="false"/>
+        <measure alpha="0.01" name="Sink 1_Edge_Response Time per Sink" nodeType="station" precision="0.03" referenceNode="Sink 1" referenceUserClass="Edge" type="Response Time per Sink" verbose="false"/>
+        <measure alpha="0.01" name="Sink 2_Cloud_Response Time per Sink" nodeType="station" precision="0.03" referenceNode="Sink 2" referenceUserClass="Cloud" type="Response Time per Sink" verbose="false"/>
+        <measure alpha="0.01" name="Edge node_Edge_Utilization" nodeType="station" precision="0.03" referenceNode="Edge node" referenceUserClass="Edge" type="Utilization" verbose="false"/>
+        <measure alpha="0.01" name="Edge node_Cloud_Utilization" nodeType="station" precision="0.03" referenceNode="Edge node" referenceUserClass="Cloud" type="Utilization" verbose="false"/>
+        <measure alpha="0.01" name="Cloud server_Cloud_Utilization" nodeType="station" precision="0.03" referenceNode="Cloud server" referenceUserClass="Cloud" type="Utilization" verbose="false"/>
+        <measure alpha="0.01" name="Edge node_Utilization" nodeType="station" precision="0.03" referenceNode="Edge node" referenceUserClass="" type="Utilization" verbose="false"/>
+        <measure alpha="0.01" name="Cloud server_Utilization" nodeType="station" precision="0.03" referenceNode="Cloud server" referenceUserClass="" type="Utilization" verbose="false"/>
+        <measure alpha="0.01" name="Sink 1_Throughput per Sink" nodeType="station" precision="0.03" referenceNode="Sink 1" referenceUserClass="" type="Throughput per Sink" verbose="false"/>
+        <measure alpha="0.01" name="Sink 2_Throughput per Sink" nodeType="station" precision="0.03" referenceNode="Sink 2" referenceUserClass="" type="Throughput per Sink" verbose="false"/>
+        <measure alpha="0.01" name="System Response Time" nodeType="" precision="0.03" referenceNode="" referenceUserClass="" type="System Response Time" verbose="false"/>
+        <measure alpha="0.01" name="Cloud server_Cloud_Response Time" nodeType="station" precision="0.03" referenceNode="Cloud server" referenceUserClass="Cloud" type="Response Time" verbose="false"/>
+        <measure alpha="0.01" name="Edge node_Edge_Response Time" nodeType="station" precision="0.03" referenceNode="Edge node" referenceUserClass="Edge" type="Response Time" verbose="false"/>
+        <measure alpha="0.01" name="Edge node_Cloud_Response Time" nodeType="station" precision="0.03" referenceNode="Edge node" referenceUserClass="Cloud" type="Response Time" verbose="false"/>
+        <measure alpha="0.01" name="System Throughput" nodeType="" precision="0.03" referenceNode="" referenceUserClass="" type="System Throughput" verbose="false"/>
+        <measure alpha="0.01" name="Edge node_Cloud_Residence Time" nodeType="station" precision="0.03" referenceNode="Edge node" referenceUserClass="Cloud" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Edge node_Edge_Residence Time" nodeType="station" precision="0.03" referenceNode="Edge node" referenceUserClass="Edge" type="Residence Time" verbose="false"/>
+        <connection source="Source 1" target="Edge node"/>
+        <connection source="Edge node" target="Sink 1"/>
+        <connection source="Edge node" target="ClassSwitch 1"/>
+        <connection source="Edge node" target="Sink 2"/>
+        <connection source="ClassSwitch 1" target="Cloud server"/>
+        <connection source="Cloud server" target="Edge node"/>
+    </sim>
+    <jmodel xsi:noNamespaceSchemaLocation="JModelGUI.xsd">
+        <userClass color="#FF0000FF" name="Edge"/>
+        <userClass color="#FFFF0000" name="Cloud"/>
+        <station name="Source 1">
+            <position angle="0.0" rotate="false" x="65.0" y="182.0"/>
+        </station>
+        <station name="Edge node">
+            <position angle="0.0" rotate="false" x="216.0" y="188.0"/>
+        </station>
+        <station name="Sink 1">
+            <position angle="0.0" rotate="false" x="511.0" y="110.0"/>
+        </station>
+        <station name="ClassSwitch 1">
+            <position angle="0.0" rotate="false" x="372.0" y="237.0"/>
+        </station>
+        <station name="Cloud server">
+            <position angle="0.0" rotate="false" x="529.0" y="243.0"/>
+        </station>
+        <station name="Sink 2">
+            <position angle="0.0" rotate="false" x="513.0" y="170.0"/>
+        </station>
+    </jmodel>
+    <results elapsedTime="868" logDecimalSeparator="." logDelimiter="," pollingInterval="1.0" xsi:noNamespaceSchemaLocation="Results.xsd">
+        <measure alpha="0.99" analyzedSamples="61200" discardedSamples="460" finalValue="0.5363453116147238" name="Edge_System Response Time" nodeType="" precision="0.03" referenceClass="Edge" referenceStation="" state="1" type="8">
+            <sample lastIntervalAvgValue="0.5400382124569226" lowerBound="0.5194932556652349" meanValue="0.537872349479693" simulationTime="80860.44367948064" upperBound="0.5562514432941511"/>
+            <sample lastIntervalAvgValue="0.5276970962959158" lowerBound="0.5268712304345723" meanValue="0.5363453116147238" simulationTime="102208.98136615766" upperBound="0.5458193927948752"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="30720" discardedSamples="245" finalValue="1.491613136118645" name="Cloud_System Response Time" nodeType="" precision="0.03" referenceClass="Cloud" referenceStation="" state="1" type="8">
+            <sample lastIntervalAvgValue="1.4972150938811835" lowerBound="1.446880430084284" meanValue="1.491613136118645" simulationTime="76730.61300734164" upperBound="1.5363458421530063"/>
+            <sample lastIntervalAvgValue="1.4972150938811835" lowerBound="1.446880430084284" meanValue="1.491613136118645" simulationTime="76730.61300734164" upperBound="1.5363458421530063"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="61200" discardedSamples="460" finalValue="0.5363453116147238" name="Sink 1_Edge_Response Time per Sink" nodeType="station" precision="0.03" referenceClass="Edge" referenceStation="Sink 1" state="1" type="12">
+            <sample lastIntervalAvgValue="0.5400382124569226" lowerBound="0.5194932556652349" meanValue="0.537872349479693" simulationTime="80860.44367948064" upperBound="0.5562514432941511"/>
+            <sample lastIntervalAvgValue="0.5276970962959158" lowerBound="0.5268712304345723" meanValue="0.5363453116147238" simulationTime="102208.98136615766" upperBound="0.5458193927948752"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="30720" discardedSamples="245" finalValue="1.491613136118645" name="Sink 2_Cloud_Response Time per Sink" nodeType="station" precision="0.03" referenceClass="Cloud" referenceStation="Sink 2" state="1" type="12">
+            <sample lastIntervalAvgValue="1.4972150938811835" lowerBound="1.446880430084284" meanValue="1.491613136118645" simulationTime="76730.61300734164" upperBound="1.5363458421530063"/>
+            <sample lastIntervalAvgValue="1.4972150938811835" lowerBound="1.446880430084284" meanValue="1.491613136118645" simulationTime="76730.61300734164" upperBound="1.5363458421530063"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="61440" discardedSamples="0" finalValue="0.25118451068738595" name="Edge node_Edge_Utilization" nodeType="station" precision="0.03" referenceClass="Edge" referenceStation="Edge node" state="1" type="4">
+            <sample lastIntervalAvgValue="0.25286269820485185" lowerBound="0.24461870660003618" meanValue="0.25118451068738595" simulationTime="31999.21947225796" upperBound="0.2577503147747357"/>
+            <sample lastIntervalAvgValue="0.25286269820485185" lowerBound="0.24461870660003618" meanValue="0.25118451068738595" simulationTime="31999.21947225796" upperBound="0.2577503147747357"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="81920" discardedSamples="55" finalValue="0.019963891976162152" name="Edge node_Cloud_Utilization" nodeType="station" precision="0.03" referenceClass="Cloud" referenceStation="Edge node" state="1" type="4">
+            <sample lastIntervalAvgValue="0.019991259955708402" lowerBound="0.019295206635492366" meanValue="0.019920075993249346" simulationTime="80858.89274114407" upperBound="0.020544945351006327"/>
+            <sample lastIntervalAvgValue="0.020064506474538765" lowerBound="0.019540706763443418" meanValue="0.019963891976162152" simulationTime="103121.39054998089" upperBound="0.020387077188880887"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="61440" discardedSamples="50" finalValue="0.16031721761118597" name="Cloud server_Cloud_Utilization" nodeType="station" precision="0.03" referenceClass="Cloud" referenceStation="Cloud server" state="1" type="4">
+            <sample lastIntervalAvgValue="0.16140018141011095" lowerBound="0.15591707831337434" meanValue="0.16031721761118597" simulationTime="77984.02850701727" upperBound="0.1647173569089976"/>
+            <sample lastIntervalAvgValue="0.16140018141011095" lowerBound="0.15591707831337434" meanValue="0.16031721761118597" simulationTime="77984.02850701727" upperBound="0.1647173569089976"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="61440" discardedSamples="100" finalValue="0.2758827758951925" name="Edge node_Utilization" nodeType="station" precision="0.03" referenceClass="" referenceStation="Edge node" state="1" type="4">
+            <sample lastIntervalAvgValue="0.27687668003580135" lowerBound="0.2678809095509259" meanValue="0.2758827758951925" simulationTime="23009.129345518377" upperBound="0.2838846422394591"/>
+            <sample lastIntervalAvgValue="0.27687668003580135" lowerBound="0.2678809095509259" meanValue="0.2758827758951925" simulationTime="23009.129345518377" upperBound="0.2838846422394591"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="61440" discardedSamples="50" finalValue="0.16031721761118597" name="Cloud server_Utilization" nodeType="station" precision="0.03" referenceClass="" referenceStation="Cloud server" state="1" type="4">
+            <sample lastIntervalAvgValue="0.16140018141011095" lowerBound="0.15591707831337434" meanValue="0.16031721761118597" simulationTime="77984.02850701727" upperBound="0.1647173569089976"/>
+            <sample lastIntervalAvgValue="0.16140018141011095" lowerBound="0.15591707831337434" meanValue="0.16031721761118597" simulationTime="77984.02850701727" upperBound="0.1647173569089976"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="51200" discardedSamples="5" finalValue="0.603515381516448" name="Sink 1_Throughput per Sink" nodeType="station" precision="0.03" referenceClass="" referenceStation="Sink 1" state="1" type="13">
+            <sample lastIntervalAvgValue="0.6040530793228233" lowerBound="0.581259531156997" meanValue="0.6044792116550293" simulationTime="80860.44367948064" upperBound="0.6296312041977803"/>
+            <sample lastIntervalAvgValue="0.5923661646932283" lowerBound="0.5919083588260448" meanValue="0.603515381516448" simulationTime="84846.15410779773" upperBound="0.6155867249565938"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="40960" discardedSamples="295" finalValue="0.40090351049816636" name="Sink 2_Throughput per Sink" nodeType="station" precision="0.03" referenceClass="" referenceStation="Sink 2" state="1" type="13">
+            <sample lastIntervalAvgValue="0.40308491614324876" lowerBound="0.3884618374368934" meanValue="0.40283169244585576" simulationTime="80858.89274114407" upperBound="0.41830551515622905"/>
+            <sample lastIntervalAvgValue="0.39926784117130387" lowerBound="0.3939276738118151" meanValue="0.40090351049816636" simulationTime="102553.60267467867" upperBound="0.40813086322763104"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="51200" discardedSamples="795" finalValue="0.9242120471065477" name="System Response Time" nodeType="" precision="0.03" referenceClass="" referenceStation="" state="1" type="8">
+            <sample lastIntervalAvgValue="0.9268473499059715" lowerBound="0.9035902029953967" meanValue="0.9242120471065477" simulationTime="51550.56968943268" upperBound="0.9448338912176987"/>
+            <sample lastIntervalAvgValue="0.9268473499059715" lowerBound="0.9035902029953967" meanValue="0.9242120471065477" simulationTime="51550.56968943268" upperBound="0.9448338912176987"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="61440" discardedSamples="230" finalValue="0.8174850346388132" name="Cloud server_Cloud_Response Time" nodeType="station" precision="0.03" referenceClass="Cloud" referenceStation="Cloud server" state="1" type="2">
+            <sample lastIntervalAvgValue="0.819953322519176" lowerBound="0.7921926935390117" meanValue="0.8169562008247993" simulationTime="80858.59287701061" upperBound="0.8417197081105868"/>
+            <sample lastIntervalAvgValue="0.819862788708226" lowerBound="0.8057290548677603" meanValue="0.8174850346388132" simulationTime="153412.48344693176" upperBound="0.8292410144098661"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="51200" discardedSamples="770" finalValue="0.5396291276448157" name="Edge node_Edge_Response Time" nodeType="station" precision="0.03" referenceClass="Edge" referenceStation="Edge node" state="1" type="2">
+            <sample lastIntervalAvgValue="0.5398965559002218" lowerBound="0.5276013809561804" meanValue="0.5396291276448157" simulationTime="51531.117075997114" upperBound="0.5516568743334511"/>
+            <sample lastIntervalAvgValue="0.5398965559002218" lowerBound="0.5276013809561804" meanValue="0.5396291276448157" simulationTime="51531.117075997114" upperBound="0.5516568743334511"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="46080" discardedSamples="685" finalValue="0.1372633811663063" name="Edge node_Cloud_Response Time" nodeType="station" precision="0.03" referenceClass="Cloud" referenceStation="Edge node" state="1" type="2">
+            <sample lastIntervalAvgValue="0.1377671080328429" lowerBound="0.12986363052109032" meanValue="0.137853606328203" simulationTime="80858.89274114407" upperBound="0.1458435821353157"/>
+            <sample lastIntervalAvgValue="0.13662262483799656" lowerBound="0.1335185845119636" meanValue="0.1372633811663063" simulationTime="116291.11537932721" upperBound="0.14100817782064898"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="40960" discardedSamples="5" finalValue="1.0096346506666602" name="System Throughput" nodeType="" precision="0.03" referenceClass="" referenceStation="" state="1" type="9">
+            <sample lastIntervalAvgValue="1.012217992865368" lowerBound="0.9898442879861301" meanValue="1.0096346506666602" simulationTime="40472.507195837694" upperBound="1.030232511662098"/>
+            <sample lastIntervalAvgValue="1.012217992865368" lowerBound="0.9898442879861301" meanValue="1.0096346506666602" simulationTime="40472.507195837694" upperBound="1.030232511662098"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="46080" discardedSamples="685" finalValue="0.05496082571461356" name="Edge node_Cloud_Residence Time" nodeType="station" precision="0.03" referenceClass="Cloud" referenceStation="Edge node" state="1" type="3">
+            <sample lastIntervalAvgValue="0.05513966343436953" lowerBound="0.051976389586338594" meanValue="0.05517428335897931" simulationTime="80858.89274114407" upperBound="0.058372177131620025"/>
+            <sample lastIntervalAvgValue="0.05470426422977662" lowerBound="0.05346139364098111" meanValue="0.05496082571461356" simulationTime="116291.11537932721" upperBound="0.05646025778824602"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="51200" discardedSamples="770" finalValue="0.5396395115181155" name="Edge node_Edge_Residence Time" nodeType="station" precision="0.03" referenceClass="Edge" referenceStation="Edge node" state="1" type="3">
+            <sample lastIntervalAvgValue="0.5399069449195394" lowerBound="0.5276115333842314" meanValue="0.5396395115181155" simulationTime="51531.117075997114" upperBound="0.5516674896519997"/>
+            <sample lastIntervalAvgValue="0.5399069449195394" lowerBound="0.5276115333842314" meanValue="0.5396395115181155" simulationTime="51531.117075997114" upperBound="0.5516674896519997"/>
+        </measure>
+    </results>
+</archive>
